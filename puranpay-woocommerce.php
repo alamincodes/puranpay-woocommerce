@@ -1,9 +1,9 @@
 <?php
 /**
  * Plugin Name: PuranPay for WooCommerce
- * Plugin URI: https://puranpay.com
+ * Plugin URI: https://github.com/alamincodes/puranpay-woocommerce
  * Description: Accept bKash, Nagad, Rocket, and Upay on WooCommerce via PuranPay hosted checkout.
- * Version: 1.0.0
+ * Version: 1.0.1
  * Author: PuranPay
  * Author URI: https://puranpay.com
  * Text Domain: puranpay-for-woocommerce
@@ -21,7 +21,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'WC_PURANPAY_VERSION', '1.0.0' );
+define( 'WC_PURANPAY_VERSION', '1.0.1' );
 define( 'WC_PURANPAY_FILE', __FILE__ );
 define( 'WC_PURANPAY_PATH', plugin_dir_path( __FILE__ ) );
 define( 'WC_PURANPAY_URL', plugin_dir_url( __FILE__ ) );
@@ -53,10 +53,9 @@ function wc_puranpay_bootstrap() {
 
 	require_once WC_PURANPAY_PATH . 'includes/class-puranpay-api.php';
 	require_once WC_PURANPAY_PATH . 'includes/class-puranpay-webhook.php';
-	require_once WC_PURANPAY_PATH . 'includes/class-wc-gateway-puranpay.php';
+	require_once WC_PURANPAY_PATH . 'includes/class-wc-puranpay-gateway.php';
 
 	add_filter( 'woocommerce_payment_gateways', 'wc_puranpay_register_gateway' );
-	load_plugin_textdomain( 'puranpay-for-woocommerce', false, dirname( plugin_basename( WC_PURANPAY_FILE ) ) . '/languages' );
 }
 
 /**
@@ -73,7 +72,7 @@ function wc_puranpay_missing_wc_notice() {
  * @return string[]
  */
 function wc_puranpay_register_gateway( $gateways ) {
-	$gateways[] = 'WC_Gateway_PuranPay';
+	$gateways[] = 'WC_PuranPay_Gateway';
 	return $gateways;
 }
 

@@ -43,7 +43,7 @@ Fulfillment is skipped when `livemode` does not match Test mode, when amounts di
 puranpay-woocommerce.php    boot, HPOS, Blocks, REST
 includes/class-puranpay-api.php
 includes/class-puranpay-webhook.php
-includes/class-wc-gateway-puranpay.php
+includes/class-wc-puranpay-gateway.php
 includes/class-puranpay-blocks.php
 assets/js/blocks.js
 ```

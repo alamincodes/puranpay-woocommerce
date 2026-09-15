@@ -2,9 +2,9 @@ PuranPay for WooCommerce
 Contributors: puranpay
 Tags: woocommerce, payments, bkash, nagad, bangladesh
 Requires at least: 6.4
-Tested up to: 6.8
+Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -14,7 +14,7 @@ Accept bKash, Nagad, Rocket, and Upay on WooCommerce through PuranPay hosted che
 
 PuranPay for WooCommerce redirects the customer to the hosted pay page. They Send Money from bKash, Nagad, Rocket, or Upay, type the TrxID, and the official SMS match marks the WooCommerce order paid.
 
-This plugin is a client for the [PuranPay](https://puranpay.com) service. You need a PuranPay account, an active plan, and a paired phone app so official wallet SMS can be matched. The plugin does not lock features behind a license key.
+This plugin is a client for the [PuranPay](https://puranpay.com) service. You need a PuranPay account, an active plan, and a paired phone app so official wallet SMS can be matched. The plugin does not lock features behind a license key. PuranPay’s [Terms of Service](https://puranpay.com/terms) and [Privacy Policy](https://puranpay.com/privacy) apply to that service.
 
 = How it works =
 
@@ -34,9 +34,17 @@ Do not treat the browser return as paid. The thank-you page only syncs if the we
 
 Store currency must be **BDT**. The checkout host and API URL default to PuranPay production (`https://api.puranpay.com`).
 
+= Third-party service =
+
+Checkout is created on PuranPay (`https://api.puranpay.com`). The customer is redirected to hosted pay, then PuranPay POSTs a signed webhook back to this shop.
+
+- [PuranPay](https://puranpay.com)
+- [Privacy Policy](https://puranpay.com/privacy)
+- [Terms of Service](https://puranpay.com/terms)
+
 = Privacy =
 
-When a customer pays, the plugin sends order amount, order id, and optional billing name / email / phone to PuranPay so checkout and the verified webhook can run. No data is sent until you save a secret key and the customer places an order.
+When a customer pays, the plugin sends order amount, order id, and optional billing name / email / phone to PuranPay so checkout and the verified webhook can run. No data is sent until you save a secret key and the customer places an order. See [puranpay.com/privacy](https://puranpay.com/privacy).
 
 == Installation ==
 
@@ -59,12 +67,23 @@ Check that the webhook URL is HTTPS, the HMAC secret matches, the shop domain is
 
 Not through this plugin. PuranPay does not expose a refund API yet.
 
+= Does this plugin send data off-site? =
+
+Yes, only after you save a secret key and a customer places an order. Amount, order id, and optional billing name / email / phone go to PuranPay. Details: [Privacy Policy](https://puranpay.com/privacy) and [Terms](https://puranpay.com/terms).
+
 == Changelog ==
+
+= 1.0.1 =
+* Load WordPress.org translations automatically (removed load_plugin_textdomain).
+* Rename gateway class to WC_PuranPay_Gateway so it uses the plugin prefix.
 
 = 1.0.0 =
 * First release: hosted checkout, signed webhook fulfill, Checkout Blocks, HPOS.
 
 == Upgrade Notice ==
+
+= 1.0.1 =
+WordPress.org Plugin Check fixes. No merchant setup change.
 
 = 1.0.0 =
 Initial release.

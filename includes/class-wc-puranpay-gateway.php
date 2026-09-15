@@ -7,7 +7,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-class WC_Gateway_PuranPay extends WC_Payment_Gateway {
+class WC_PuranPay_Gateway extends WC_Payment_Gateway {
 
 	public function __construct() {
 		$this->id                 = 'puranpay';
@@ -27,6 +27,8 @@ class WC_Gateway_PuranPay extends WC_Payment_Gateway {
 		add_action( 'woocommerce_update_options_payment_gateways_' . $this->id, array( $this, 'process_admin_options' ) );
 		add_action( 'woocommerce_api_puranpay', array( 'WC_PuranPay_Webhook', 'handle_wc_api' ) );
 		add_action( 'woocommerce_thankyou_' . $this->id, array( $this, 'thankyou_page' ) );
+		add_action( 'woocommerce_thankyou', array( $this, 'thankyou_page' ) );
+		add_action( 'template_redirect', array( $this, 'maybe_sync_order_received' ) );
 	}
 
 	/**
@@ -267,13 +269,31 @@ class WC_Gateway_PuranPay extends WC_Payment_Gateway {
 	}
 
 	/**
+	 * Block checkout thank-you often skips woocommerce_thankyou_{gateway}.
+	 * Sync on the order-received URL itself so a late webhook still fulfills.
+	 */
+	public function maybe_sync_order_received() {
+		if ( ! function_exists( 'is_order_received_page' ) || ! is_order_received_page() ) {
+			return;
+		}
+		$order_id = absint( get_query_var( 'order-received' ) );
+		if ( $order_id ) {
+			$this->thankyou_page( $order_id );
+		}
+	}
+
+	/**
 	 * @param int $order_id Order id.
 	 */
 	public function thankyou_page( $order_id ) {
 		$order = wc_get_order( $order_id );
-		if ( $order instanceof WC_Order ) {
-			WC_PuranPay_Webhook::sync_order_from_api( $order );
+		if ( ! $order instanceof WC_Order ) {
+			return;
 		}
+		if ( $order->get_payment_method() && 'puranpay' !== $order->get_payment_method() ) {
+			return;
+		}
+		WC_PuranPay_Webhook::sync_order_from_api( $order );
 	}
 
 	/**

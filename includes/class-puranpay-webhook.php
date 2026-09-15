@@ -124,7 +124,7 @@ class WC_PuranPay_Webhook {
 	}
 
 	/**
-	 * @param WC_Gateway_PuranPay  $gateway Gateway.
+	 * @param WC_PuranPay_Gateway  $gateway Gateway.
 	 * @param array<string,mixed>  $event   Webhook JSON.
 	 */
 	private static function handle_event( $gateway, array $event ) {
@@ -144,7 +144,7 @@ class WC_PuranPay_Webhook {
 	}
 
 	/**
-	 * @param WC_Gateway_PuranPay $gateway  Gateway.
+	 * @param WC_PuranPay_Gateway $gateway  Gateway.
 	 * @param WC_Order            $order    Order.
 	 * @param array<string,mixed> $payment  Payment object.
 	 * @param bool                $livemode True when live SMS match.
@@ -244,7 +244,7 @@ class WC_PuranPay_Webhook {
 	}
 
 	/**
-	 * @return WC_Gateway_PuranPay|null
+	 * @return WC_PuranPay_Gateway|null
 	 */
 	private static function gateway() {
 		if ( ! function_exists( 'WC' ) || ! WC()->payment_gateways() ) {
@@ -252,6 +252,6 @@ class WC_PuranPay_Webhook {
 		}
 		$gateways = WC()->payment_gateways()->payment_gateways();
 		$gateway  = isset( $gateways['puranpay'] ) ? $gateways['puranpay'] : null;
-		return $gateway instanceof WC_Gateway_PuranPay ? $gateway : null;
+		return $gateway instanceof WC_PuranPay_Gateway ? $gateway : null;
 	}
 }
