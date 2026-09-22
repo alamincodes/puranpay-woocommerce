@@ -6,7 +6,7 @@ Requires WordPress 6.4+, WooCommerce 8.0+, PHP 7.4+, store currency **BDT**. Sam
 
 ## Install from zip
 
-1. Zip this folder (the folder that contains `puranpay-woocommerce.php` at the top level).
+1. Zip this folder as `puranpay-for-woocommerce` (it must contain `puranpay-woocommerce.php` at the top level). The directory slug and the text domain are both `puranpay-for-woocommerce`.
 2. WordPress → Plugins → Add New → Upload Plugin.
 3. Activate. WooCommerce → Settings → Payments → **PuranPay**.
 

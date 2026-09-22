@@ -3,7 +3,7 @@
  * Plugin Name: PuranPay for WooCommerce
  * Plugin URI: https://github.com/alamincodes/puranpay-woocommerce
  * Description: Accept bKash, Nagad, Rocket, and Upay on WooCommerce via PuranPay hosted checkout.
- * Version: 1.0.1
+ * Version: 1.0.3
  * Author: PuranPay
  * Author URI: https://puranpay.com
  * Text Domain: puranpay-for-woocommerce
@@ -21,7 +21,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'WC_PURANPAY_VERSION', '1.0.1' );
+define( 'WC_PURANPAY_VERSION', '1.0.3' );
 define( 'WC_PURANPAY_FILE', __FILE__ );
 define( 'WC_PURANPAY_PATH', plugin_dir_path( __FILE__ ) );
 define( 'WC_PURANPAY_URL', plugin_dir_url( __FILE__ ) );

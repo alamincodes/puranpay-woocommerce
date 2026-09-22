@@ -1,10 +1,10 @@
 PuranPay for WooCommerce
-Contributors: puranpay
+Contributors: alamincodes, puranpay
 Tags: woocommerce, payments, bkash, nagad, bangladesh
 Requires at least: 6.4
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.0.1
+Stable tag: 1.0.3
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -73,6 +73,13 @@ Yes, only after you save a secret key and a customer places an order. Amount, or
 
 == Changelog ==
 
+= 1.0.3 =
+* Set the text domain to the plugin slug puranpay-for-woocommerce.
+
+= 1.0.2 =
+* Set text domain to plugin slug puranpay-woocommerce.
+* Add WordPress.org username alamincodes to Contributors.
+
 = 1.0.1 =
 * Load WordPress.org translations automatically (removed load_plugin_textdomain).
 * Rename gateway class to WC_PuranPay_Gateway so it uses the plugin prefix.
@@ -81,6 +88,12 @@ Yes, only after you save a secret key and a customer places an order. Amount, or
 * First release: hosted checkout, signed webhook fulfill, Checkout Blocks, HPOS.
 
 == Upgrade Notice ==
+
+= 1.0.3 =
+Text domain now matches the WordPress.org slug.
+
+= 1.0.2 =
+WordPress.org review: text domain and Contributors header.
 
 = 1.0.1 =
 WordPress.org Plugin Check fixes. No merchant setup change.
